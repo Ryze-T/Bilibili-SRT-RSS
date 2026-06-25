@@ -5,8 +5,9 @@ env:
 
 on:
   schedule:
-    # 每 3 小时跑一次
-    - cron: "0 */3 * * *"
+    # 一天 3 次：UTC 00:00 / 08:00 / 16:00
+    # = 北京时间 08:00（早）/ 16:00（午后）/ 次日 00:00（深夜）
+    - cron: "0 0,8,16 * * *"
   workflow_dispatch: {}
 
 permissions:

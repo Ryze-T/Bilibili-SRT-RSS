@@ -363,9 +363,15 @@ def main():
     lang_priority = config.get("transcript_lang_priority", ["zh-CN", "ai-zh", "en"])
     max_new = config.get("max_new_per_up_per_run", 3)
     max_per_feed = config.get("max_items_per_feed", 50)
+    only_keep_days = int(config.get("only_keep_days", 7))
     site_base_url = (config.get("site_base_url") or "").rstrip("/")
     categories_cfg = config.get("categories", {})
     ok_count, fail_count = 0, 0
+
+    # 时间窗口：只关心发布时间在 cutoff 之后的视频
+    from datetime import timedelta
+    cutoff_dt = datetime.now(timezone.utc) - timedelta(days=only_keep_days)
+    print(f"[配置] 仅处理 {cutoff_dt.isoformat(timespec='seconds')} 之后发布的视频（最近 {only_keep_days} 天）")
 
     # 提前刷一次 wbi keys
     try:
@@ -386,9 +392,12 @@ def main():
                     print(f"    [错误] ❌ 获取 UP 投稿失败：{e}")
                     continue
 
-                new_videos = [v for v in videos if v["bvid"] not in seen_ids][-max_new:]
+                new_videos = [
+                    v for v in videos
+                    if v["bvid"] not in seen_ids and v["published_dt"] >= cutoff_dt
+                ][-max_new:]
                 if not new_videos:
-                    print("    [状态] ✨ 检查完毕，该 UP 主没有新视频。")
+                    print("    [状态] ✨ 检查完毕，该 UP 主在窗口期内没有新视频。")
                     continue
 
                 print(f"    [状态] 🔔 发现 {len(new_videos)} 个新视频，开始抓字幕...")
@@ -427,9 +436,15 @@ def main():
     items = trimmed
     save_items(items)
 
+    # RSS 输出阶段也按时间窗口过滤：只发布最近 N 天内的条目
+    cutoff_iso = cutoff_dt.isoformat()
     for category_name in categories_cfg:
-        cat_items = [it for it in items if it["category"] == category_name]
+        cat_items = [
+            it for it in items
+            if it["category"] == category_name and it["published"] >= cutoff_iso
+        ]
         cat_items.sort(key=lambda it: it["published"], reverse=True)
+        print(f"[输出] 分类 [{category_name}]: 窗口内 {len(cat_items)} 条 → RSS")
         build_feed_for_category(category_name, cat_items[:max_per_feed], site_base_url)
 
     write_index_html(categories_cfg, site_base_url)

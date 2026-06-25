@@ -7,10 +7,14 @@
 site_base_url: "https://ryze-t.github.io/Bilibili-SRT-RSS"
 
 # 每个 UP 主每次运行最多处理几个新视频
-max_new_per_up_per_run: 3
+max_new_per_up_per_run: 5
 
 # 每个分类的 RSS feed 里最多保留多少条最新内容
 max_items_per_feed: 50
+
+# 只把发布时间在最近 N 天内的视频纳入抓取 + RSS 输出
+# 超过该时长的旧视频会从 RSS 里淘汰（但仍保留在 state 里做去重）
+only_keep_days: 7
 
 # 字幕语言优先级，按顺序尝试；都找不到再 fallback
 # B 站常见: zh-CN（人工中文）、ai-zh（AI 中文）、en、ai-en
@@ -31,6 +35,8 @@ categories:
   美投君:
     - mid: 1962124785
       name: "美投侃新闻"
+    - mid: 500159532
+      name: "美投讲美股"
 
   # 继续往下加分类，比如：
   # 财经:
