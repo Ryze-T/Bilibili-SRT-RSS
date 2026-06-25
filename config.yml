@@ -1,0 +1,38 @@
+# =========================================================
+# 配置文件：在这里管理你要关注的 Bilibili UP 主，按分类分组
+# =========================================================
+
+# 改成你自己的 GitHub Pages 地址
+# 格式：https://<你的GitHub用户名>.github.io/Bilibili-SRT-RSS
+site_base_url: "https://ryze-t.github.io/Bilibili-SRT-RSS"
+
+# 每个 UP 主每次运行最多处理几个新视频
+max_new_per_up_per_run: 3
+
+# 每个分类的 RSS feed 里最多保留多少条最新内容
+max_items_per_feed: 50
+
+# 字幕语言优先级，按顺序尝试；都找不到再 fallback
+# B 站常见: zh-CN（人工中文）、ai-zh（AI 中文）、en、ai-en
+transcript_lang_priority:
+  - zh-CN
+  - zh-Hans
+  - zh
+  - ai-zh
+  - en
+  - ai-en
+
+# -----------------------------------------------------------
+# 分类与 UP 主列表
+# mid 是 UP 主主页 URL 里的数字部分：
+#   https://space.bilibili.com/<mid>
+# -----------------------------------------------------------
+categories:
+  美投君:
+    - mid: 1962124785
+      name: "美投侃新闻"
+
+  # 继续往下加分类，比如：
+  # 财经:
+  #   - mid: 123456789
+  #     name: "UP主名字"

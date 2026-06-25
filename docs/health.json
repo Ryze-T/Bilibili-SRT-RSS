@@ -1,0 +1,37 @@
+{
+  "ok": true,
+  "checked_at": "2026-06-25T09:54:00+00:00",
+  "cookie_source": "file:cookie.txt",
+  "checks": {
+    "cookie_loaded": {
+      "ok": true,
+      "detail": "file:cookie.txt"
+    },
+    "fields_required": {
+      "ok": true,
+      "missing": []
+    },
+    "fields_recommended": {
+      "ok": true,
+      "missing": []
+    },
+    "nav_login": {
+      "ok": true,
+      "detail": "ok",
+      "info": {
+        "uname_masked": "爆***",
+        "mid_hash": "5d6b08e4"
+      }
+    },
+    "wbi_signature": {
+      "ok": true,
+      "detail": "ok"
+    },
+    "subtitle_endpoint": {
+      "ok": true,
+      "detail": "subtitle_track_count=1"
+    }
+  },
+  "summary": "✅ Cookie 健康，登录态有效",
+  "advice": ""
+}

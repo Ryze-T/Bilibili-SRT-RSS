@@ -1,0 +1,13 @@
+# 本地凭证（不要提交）
+cookie.txt
+cookie.clean.txt
+cookie.full.bak
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 临时输出可保留（GitHub Pages 需要）
+# docs/feeds/ 与 state/items.json 不忽略，需要被 commit
