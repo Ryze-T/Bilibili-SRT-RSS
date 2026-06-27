@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "checked_at": "2026-06-27T02:40:25+00:00",
+  "checked_at": "2026-06-27T10:00:22+00:00",
   "cookie_source": "env:BILI_RAW_COOKIES",
   "checks": {
     "cookie_loaded": {
