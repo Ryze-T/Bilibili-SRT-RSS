@@ -1,6 +1,6 @@
 {
-  "ok": true,
-  "checked_at": "2026-08-03T02:13:31+00:00",
+  "ok": false,
+  "checked_at": "2026-08-03T11:17:22+00:00",
   "cookie_source": "env:BILI_RAW_COOKIES",
   "checks": {
     "cookie_loaded": {
@@ -16,22 +16,11 @@
       "missing": []
     },
     "nav_login": {
-      "ok": true,
-      "detail": "ok",
-      "info": {
-        "uname_masked": "爆***",
-        "mid_hash": "5d6b08e4"
-      }
-    },
-    "wbi_signature": {
-      "ok": true,
-      "detail": "ok"
-    },
-    "subtitle_endpoint": {
-      "ok": true,
-      "detail": "subtitle_track_count=6"
+      "ok": false,
+      "detail": "code=-101 msg=账号未登录",
+      "info": null
     }
   },
-  "summary": "✅ Cookie 健康，登录态有效",
-  "advice": ""
+  "summary": "❌ 登录态校验失败：code=-101 msg=账号未登录",
+  "advice": "SESSDATA 很可能已过期或被风控。请在浏览器登录 bilibili.com 后重新导出 cookie，用 scripts/clean_cookie.py 清洗后更新 BILI_RAW_COOKIES。"
 }
